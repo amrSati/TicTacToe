@@ -44,11 +44,11 @@ public class TicTacToe {
                     if (plyr2.equals(plyr1)) {
                         System.out.println("You can't choose the same symbol! \n please try again");
                             plyr2 = supp.next();
-                        System.out.println("You are player "+"'"+plyr2+"'");
                     }   else if (plyr2.equals("o") || plyr2.equals("x")) {
                             exttt = false;
                         }
                 }
+                System.out.println("You are player "+"'"+plyr2+"'");
                 gameBoard(gBoard);
                 while (true){
                     System.out.println("Player 'x' place your move: (1 - 9)");      
@@ -177,7 +177,7 @@ public class TicTacToe {
                             break;
                     case 9 :
                         gBoard[4][4] = iCon;
-                            break
+                            break;
                     default:
                         System.out.println("WRONG INPUT!!");
                             break;
