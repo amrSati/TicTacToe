@@ -35,8 +35,8 @@ public class TicTacToe {
                         System.out.println("Choose one of the symbols given!! (x | o)");
                             plyr1 = supp.next();
                     }
-                    System.out.println("You are player "+"'"+plyr1+"'");
                 }
+                System.out.println("You are player "+"'"+plyr1+"'");
                 System.out.println("Choose a symbol: ( x | o)");
                     plyr2 = supp.next();
                 exttt = true;
