@@ -13,7 +13,7 @@ public class TicTacToe {
     	public static void main(String[] args) {
                 Scanner supp = new Scanner(System.in);
             boolean ext = true;
-            while (ext){
+            while (ext) {
                 plyr1Pos.clear();
                 plyr2Pos.clear();
                 winn.clear();
@@ -50,30 +50,30 @@ public class TicTacToe {
                 }
                 System.out.println("You are player "+"'"+plyr2+"'");
                 gameBoard(gBoard);
-                while (true){
+                while (true) {
                     System.out.println("Player 'x' place your move: (1 - 9)");      
                         int positin1 = supp.nextInt();
-                    while(plyr1Pos.contains(positin1) || plyr2Pos.contains(positin1)) {
+                    while (plyr1Pos.contains(positin1) || plyr2Pos.contains(positin1)) {
                         System.out.println("POSITION TAKEN!!! \n Enter a correct one.");
                             positin1 = supp.nextInt();
                     }
                     placement(gBoard, positin1, plyr1);
                     gameBoard(gBoard);
                     String rslt = winnerCheck();
-                    if (rslt.length() > 0){
+                    if (rslt.length() > 0) {
                         System.out.println(rslt);
                             break;
                     } //this condition bcaus the method returning an empty string it must not be empty
                     System.out.println("Player 'o' place your move: (1 - 9)");      
                         int positin2 = supp.nextInt();
-                    while (plyr2Pos.contains(positin2) || plyr1Pos.contains(positin2)){
+                    while (plyr2Pos.contains(positin2) || plyr1Pos.contains(positin2)) {
                         System.out.println("POSITION TAKEN!!! \n Enter a correct one.");
                             positin2 = supp.nextInt();
                     }
                     placement(gBoard, positin2, plyr2);
                     gameBoard(gBoard);
                     rslt = winnerCheck();
-                    if (rslt.length() > 0){
+                    if (rslt.length() > 0) {
                         System.out.println(rslt);
                             break;
                     } 
@@ -82,25 +82,22 @@ public class TicTacToe {
                         System.out.println("Do you want to play again? ( y | n)");
                             String rnd = supp.next();
                         switch (rnd) {
-                            case "n":
+                            case "n" :
                                 System.out.println("Bye !>_<!");
                                 ext = extt = false;
                                     break;
-                            case "y":
+                            case "y" :
                                 System.out.println("YaY!!");
                                 extt = false;
                                     break;
-                            default:
+                            default :
                                 System.out.println("WRONG INPUT!");
                                     break;
                         }
                     }
             }
-        }
-
-
-
-            /* this method is to chck the winner and couldnt write it until i learnd about this arraylist thing
+        }   /* 
+            this method is to chck the winner and couldnt write it until i learnd about this arraylist thing
             it helped!
             */
         public static String winnerCheck() {
@@ -124,9 +121,9 @@ public class TicTacToe {
             for(List l : winn) {
                 if(plyr1Pos.containsAll(l)) {
                     return "Congratulations Player 'x' you won!  \n Sorry Player 'o' good luck next time.";
-                }   else if(plyr2Pos.containsAll(l)) {
+                }   else if (plyr2Pos.containsAll(l)) {
                         return "Congratulations Player 'o' you won!  \n Sorry Player 'x' good luck next time.";
-                    }   else if((plyr1Pos.size() + plyr2Pos.size()) == 9) {
+                    }   else if ((plyr1Pos.size() + plyr2Pos.size()) == 9) {
                             if (plyr1Pos.containsAll(l)) {
                                 return "Congratulations Player 'x' you won!  \n Sorry Player 'o' good luck next time.";
                             }   else if (plyr1Pos.containsAll(l)) {
@@ -137,14 +134,13 @@ public class TicTacToe {
                         }
             }
             return "";
-        }       
-
+        }
         public static void placement(char[][] gBoard, int positin, String plyr) {
             char iCon = ' ';
-            if(plyr.equals("x")) {
+            if (plyr.equals("x")) {
                 iCon = 'X';
                     plyr1Pos.add(positin);
-            }   else if(plyr.equals("o")) {
+            }   else if (plyr.equals("o")) {
                     iCon = 'O';
                         plyr2Pos.add(positin);
                 }
@@ -184,8 +180,7 @@ public class TicTacToe {
                 }
                 ext = false;
             }
-        }       
-
+        }
         public static void gameBoard(char[][] gBoard) {
                 for (int i=0; i< gBoard.length; i++) {
                     for (int j = 0; j < gBoard[i].length; j++) {
