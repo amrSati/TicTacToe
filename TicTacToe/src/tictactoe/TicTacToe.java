@@ -5,13 +5,11 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 public class TicTacToe {
-    Scanner supp = new Scanner(System.in);
-           //to build lsts used in winnr chck method
+    static Scanner supp = new Scanner(System.in);
     static ArrayList <List> winn = new ArrayList<>();
     static ArrayList <Integer> plyr1Pos = new ArrayList<>();
     static ArrayList <Integer> plyr2Pos = new ArrayList<>();
     	public static void main(String[] args) {
-                Scanner supp = new Scanner(System.in);
             boolean ext = true;
             while (ext) {
                 plyr1Pos.clear();
@@ -109,7 +107,7 @@ public class TicTacToe {
             List rCol = Arrays.asList(3,6,9);
             List fDiag = Arrays.asList(1,5,9); 
             List sDiag = Arrays.asList(3,5,7);
-            List<List> winn = new ArrayList<List>();
+            
             winn.add(tRw);
             winn.add(mRw);
             winn.add(bRw);
@@ -118,19 +116,14 @@ public class TicTacToe {
             winn.add(rCol);
             winn.add(fDiag);
             winn.add(sDiag);
+            boolean full = ((plyr1Pos.size() + plyr2Pos.size()) == 9);
             for(List l : winn) {
-                if(plyr1Pos.containsAll(l)) {
+                if((full && plyr1Pos.containsAll(l)) || plyr1Pos.containsAll(l)) {
                     return "Congratulations Player 'x' you won!  \n Sorry Player 'o' good luck next time.";
-                }   else if (plyr2Pos.containsAll(l)) {
+                }   else if ((full && plyr2Pos.containsAll(l)) || plyr2Pos.containsAll(l)) {
                         return "Congratulations Player 'o' you won!  \n Sorry Player 'x' good luck next time.";
-                    }   else if ((plyr1Pos.size() + plyr2Pos.size()) == 9) {
-                            if (plyr1Pos.containsAll(l)) {
-                                return "Congratulations Player 'x' you won!  \n Sorry Player 'o' good luck next time.";
-                            }   else if (plyr1Pos.containsAll(l)) {
-                                    return "Congratulations Player 'o' you won!  \n Sorry Player 'x' good luck next time.";
-                                }   else {
-                                        return "it's a TIE!!";
-                                    }
+                    }   else if (full) {
+                            return "it's a TIE!!";
                         }
             }
             return "";
