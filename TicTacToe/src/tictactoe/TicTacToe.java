@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 public class TicTacToe {
-    static Scanner supp = new Scanner(System.in);
+    static Scanner sc = new Scanner(System.in);
     static ArrayList <List> winn = new ArrayList<>();
     static ArrayList <Integer> plyr1Pos = new ArrayList<>();
     static ArrayList <Integer> plyr2Pos = new ArrayList<>();
@@ -20,40 +20,30 @@ public class TicTacToe {
                                    {' ','|',' ','|',' '},
                                    {'-','+','-','+','-'},
                                    {' ','|',' ','|',' '}};
-                String plyr1, plyr2;
-                boolean extt, exttt;
-                extt = exttt = true;
+                char plyr1, plyr2;
+                boolean extt;
+                extt = true;
                                    //take input for user symbol
                 System.out.println("Choose a symbol: ( x | o)");
-                    plyr1 = supp.next();
-                while (exttt) {
-                    if (plyr1.equals("x") || plyr1.equals("o")) {
-                        exttt = false;
+                    plyr1 = sc.next().charAt(0);
+                while (extt) {
+                    if (plyr1 == 'x' || plyr1 == 'o') {
+                        extt = false;
                     } else {
                         System.out.println("Choose one of the symbols given!! (x | o)");
-                            plyr1 = supp.next();
+                            plyr1 = sc.next().charAt(0);
                     }
                 }
-                System.out.println("You are player "+"'"+plyr1+"'");
-                System.out.println("Choose a symbol: ( x | o)");
-                    plyr2 = supp.next();
-                exttt = true;
-                while (exttt) {
-                    if (plyr2.equals(plyr1)) {
-                        System.out.println("You can't choose the same symbol! \n please try again");
-                            plyr2 = supp.next();
-                    }   else if (plyr2.equals("o") || plyr2.equals("x")) {
-                            exttt = false;
-                        }
-                }
-                System.out.println("You are player "+"'"+plyr2+"'");
+                if (plyr1 == 'x') plyr2 = 'o';
+                else plyr2 = 'x';
+                extt = true;
                 gameBoard(gBoard);
                 while (true) {
-                    System.out.println("Player 'x' place your move: (1 - 9)");      
-                        int positin1 = supp.nextInt();
+                    System.out.printf("Player '%s' place your move: (1 - 9)%n",plyr1);      
+                        int positin1 = sc.nextInt();
                     while (plyr1Pos.contains(positin1) || plyr2Pos.contains(positin1)) {
                         System.out.println("POSITION TAKEN!!! \n Enter a correct one.");
-                            positin1 = supp.nextInt();
+                            positin1 = sc.nextInt();
                     }
                     placement(gBoard, positin1, plyr1);
                     gameBoard(gBoard);
@@ -62,11 +52,11 @@ public class TicTacToe {
                         System.out.println(rslt);
                             break;
                     } //this condition bcaus the method returning an empty string it must not be empty
-                    System.out.println("Player 'o' place your move: (1 - 9)");      
-                        int positin2 = supp.nextInt();
+                    System.out.printf("Player '%s' place your move: (1 - 9)%n",plyr2);      
+                        int positin2 = sc.nextInt();
                     while (plyr2Pos.contains(positin2) || plyr1Pos.contains(positin2)) {
                         System.out.println("POSITION TAKEN!!! \n Enter a correct one.");
-                            positin2 = supp.nextInt();
+                            positin2 = sc.nextInt();
                     }
                     placement(gBoard, positin2, plyr2);
                     gameBoard(gBoard);
@@ -78,7 +68,7 @@ public class TicTacToe {
                 }
                     while (extt) {
                         System.out.println("Do you want to play again? ( y | n)");
-                            String rnd = supp.next();
+                            String rnd = sc.next();
                         switch (rnd) {
                             case "n" :
                                 System.out.println("Bye !>_<!");
@@ -119,21 +109,21 @@ public class TicTacToe {
             boolean full = ((plyr1Pos.size() + plyr2Pos.size()) == 9);
             for(List l : winn) {
                 if((full && plyr1Pos.containsAll(l)) || plyr1Pos.containsAll(l)) {
-                    return "Congratulations Player 'x' you won!  \n Sorry Player 'o' good luck next time.";
+                    return "Congrats Player 'x' you won!  \n hard luck loser.";
                 }   else if ((full && plyr2Pos.containsAll(l)) || plyr2Pos.containsAll(l)) {
-                        return "Congratulations Player 'o' you won!  \n Sorry Player 'x' good luck next time.";
+                        return "Congrats Player 'o' you won!  \n hard luck loser.";
                     }   else if (full) {
                             return "it's a TIE!!";
                         }
             }
             return "";
         }
-        public static void placement(char[][] gBoard, int positin, String plyr) {
+        public static void placement(char[][] gBoard, int positin, char plyr) {
             char iCon = ' ';
-            if (plyr.equals("x")) {
+            if (plyr == 'x') {
                 iCon = 'X';
                     plyr1Pos.add(positin);
-            }   else if (plyr.equals("o")) {
+            }   else if (plyr == 'o') {
                     iCon = 'O';
                         plyr2Pos.add(positin);
                 }
